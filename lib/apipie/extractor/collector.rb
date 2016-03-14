@@ -69,7 +69,7 @@ module Apipie
             end
 
             if [:boolean, :bool].include?(param_desc[:type].first) && (! [true, false, 1, 0].include?(value))
-              param_desc[:type].shift
+              param_desc[:type].shift(2)
             end
 
             if param_desc[:type].first == :number && (key.to_s !~ /id$/ || !Apipie::Validator::NumberValidator.validate(value))
