@@ -41,6 +41,7 @@ module Apipie
         description = @descriptions["#{record[:controller].name}##{record[:action]}"]
         description[:controller] ||= record[:controller]
         description[:action] ||= record[:action]
+        description[:response_data] ||= record[:response_data]
 
         refine_errors_description(description, record)
         refine_params_description(description[:params], record[:params])

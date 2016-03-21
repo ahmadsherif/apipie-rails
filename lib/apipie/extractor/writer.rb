@@ -283,6 +283,7 @@ module Apipie
         code = "#{Apipie.configuration.generated_doc_disclaimer}\n"
         code << generate_apis_code(desc[:api])
         code << generate_params_code(desc[:params])
+        code << generate_example_code(desc[:response_data]) if desc[:response_data]
         code << generate_errors_code(desc[:errors])
         return code
       end
@@ -332,6 +333,14 @@ module Apipie
           end
           code << "\n"
         end
+        code
+      end
+
+      def generate_example_code(example)
+        code = ''
+        code << "example <<-STR\n"
+        code << JSON.pretty_generate(example)
+        code << "\nSTR\n"
         code
       end
 
